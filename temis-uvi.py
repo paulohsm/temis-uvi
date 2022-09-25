@@ -33,23 +33,23 @@ for m in range(1,13):
 #    clim_ozo = np.average(ozo[np.where(mm == m)])
 
 
+#print(clim_ozo)
+
+#ijan = np.where(mm == 1)
+
+#print(ijan)
+
+#print(ozo[ijan])
+
+#print(np.average(ozo[ijan]))
+
+#print(range(1,12))
+#range(12)
+
+#for i in range(1, 12):
+#    print(i)
+
 print(clim_ozo)
-
-ijan = np.where(mm == 1)
-
-print(ijan)
-
-print(ozo[ijan])
-
-print(np.average(ozo[ijan]))
-
-print(range(1,12))
-range(12)
-
-for i in range(1, 12):
-    print(i)
-
-
 
 print('chegamos ao fim!')
 
