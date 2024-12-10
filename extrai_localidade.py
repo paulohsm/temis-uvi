@@ -22,12 +22,12 @@ from datetime import datetime
 # Coords Recepcao IFCE Baturite:
 # latitude = 4°20'36.25"S = -4.343403
 # longitude = 38°51'51.20"O = -38.864222
-localidade = {'nome': 'Baturite', 'lat': -4.343403, 'lon': -38.864222}
+#localidade = {'nome': 'Baturite', 'lat': -4.343403, 'lon': -38.864222}
 # 
 # Coords Portaria IFCE Maracanau:
 # latitude = 3°52'20.2"S = -3.8722845
 # longitude = 38°36'38.4"W = -38.6113503
-# localidade = {'nome': 'Maracanau', 'lat': -3.8722845, 'lon': -38.6113503}
+localidade = {'nome': 'Maracanau', 'lat': -3.8722845, 'lon': -38.6113503}
 
 # Anos inicial e final
 anoi = 1960
