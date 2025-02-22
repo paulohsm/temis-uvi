@@ -17,6 +17,7 @@ dirsaida="/run/media/santiago/ext2tb/dados/TEMIS_UVI/msr2_2023"
 # https://d1qb6yzwaaq4he.cloudfront.net/uvradiation/v2.0/msr2/2022/12/uvief20221231_msr.hdf
 
 for aa in $(seq -w 1960 2022)
+#for aa in $(seq -w 2023 2023)
 do
         for mm in $(seq -w 1 12)
         do

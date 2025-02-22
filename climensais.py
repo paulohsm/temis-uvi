@@ -1,26 +1,21 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 
 caminho = "/home/santiago/Projetos/temis-uvi/Maracanau.csv"
-temis = pd.read_csv(caminho, skiprows=1, na_values=-999.0)
-temis['data'] = pd.to_datetime(temis['data'])
+uv = pd.read_csv(caminho, skiprows=1, na_values=-999.0, parse_dates=['data'])
 
-temis['ano'] = temis['data'].dt.year
-temis['mes'] = temis['data'].dt.month
+# novas colunas para diferentes fracionamentos do tempo
+uv['ano'] = uv['data'].dt.year
+uv['mes'] = uv['data'].dt.month
+uv['est'] = uv['mes'] % 12 // 3 + 1
 
-def clim(grupo):
-    return pd.Series({'media': grupo.mean(), 'despd': grupo.std()})
+# secionando o intervalo de tempo em partes de 30 anos
+uv['periodo'] = 3
+uv.loc[(uv['ano'] >= 1960) & (uv['ano'] <= 1989), 'periodo'] = 1
+uv.loc[(uv['ano'] >= 1990) & (uv['ano'] <= 2019), 'periodo'] = 2
 
-estats = temis.groupby(['ano', 'mes']).agg(clim).unstack()
+# cálculo de métricas estatísticas
+clim = uv.groupby(['periodo', 'mes'])[['ief', 'dec', 'dvc', 'ddc']].agg(['mean', 'median', 'std'])
 
-clim1990 = estats.loc[1:30]
-clim2020 = estats.loc[31:60]
+print(clim.head())
 
-clim1990['media']['ief'].plot(label='1960-1990')
-clim2020['media']['ief'].plot(label='1990-2020')
-plt.legend()
-plt.title('Médias Climatológicas Mensais IEF')
-plt.xlabel('Mês')
-plt.ylabel('Intensidade (J/m²)')
-plt.show()
+print(clim.loc[1, ('ief', 'mean')])

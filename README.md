@@ -16,20 +16,20 @@ https://www.temis.nl/uvradiation/UVarchive.php
 
 For basic definitions of variables, see https://www.temis.nl/uvradiation/info/index.html.
 
-# Data download
+## Data download
 
 In order to extract a time series for a single location, one must first download the UV radiation products datasets provided by TEMIS' UV radiation monitoring archive (https://www.temis.nl/uvradiation/UVarchive.php). This is made by 'baixar-msr2.sh' bash script.
 
-# Data check
+## Data check
 
 After the hole archive os localy available, may be useful to check all files (one per day and per variable) really exists. This task is performed by "checar-arquivos.py".
 
-# Location extraction
+## Location extraction
 
 "extrai_localidade.py" is the python script that reads the entire archive and writes a .csv time series for (lat, lon) pair. 
 
-# Decadal monthly means and standard deviations
+## Decadal monthly means and standard deviations
 
 For each variable, script "decadas.py" plots six decades superimposed curves of monthly means. Monthly standard deviations are added as shades following curves of means. 
 
-# Monthly climatologies
+## Monthly climatologies
