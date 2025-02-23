@@ -38,7 +38,7 @@ for var in variaveis:
         plt.legend(fontsize=16)
         plt.grid()
         #plt.show()
-        figname = f'{var}_grafico.png'       
+        figname = f'decadas_{var}.png'       
         plt.savefig(figname, dpi=300, bbox_inches='tight')
 
 exit()
