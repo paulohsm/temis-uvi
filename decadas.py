@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-caminho = "/home/santiago/Projetos/temis-uvi/Maracanau.csv"
-df = pd.read_csv(caminho, skiprows=1, na_values=-999.0)
+caminho = "/home/santiago/Projetos/temis-uvi/dados/Maracanau.csv"
+df = pd.read_csv(caminho, skiprows=1, na_values=-999.0, parse_dates=['data'])
 df['data'] = pd.to_datetime(df['data'])
 
 df['decada'] = (df['data'].dt.year // 10) * 10
@@ -38,7 +38,7 @@ for var in variaveis:
         plt.legend(fontsize=16)
         plt.grid()
         #plt.show()
-        figname = f'decadas_{var}.png'       
+        figname = f'graficos/decadas_{var}.png'       
         plt.savefig(figname, dpi=300, bbox_inches='tight')
 
 exit()
