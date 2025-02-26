@@ -1,3 +1,5 @@
+.gitignore
+download-yearly-nc.sh
 baixar-msr2.sh
 temis-uvi.jl
 uvnctimeseries.py
