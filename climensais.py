@@ -25,16 +25,19 @@ clim = uv.groupby(['periodo', 'mes'])[['ief', 'dec', 'dvc', 'ddc']].agg(['mean',
 # comando de exemplo para selecionar um conjunto de estatisticas mensais
 #print(clim.loc[1, ('ief', 'mean')])
 
+# plot settings
+plt.figure(figsize=(10, 6))
+
 # a function to plot the four variables
 meses = range(1, 13)
 mesest = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D']
 def graf(clim, variavel, titulo):
-    plt.figure(figsize=(6.4, 3.6), dpi=300)
-
     p1_avg = clim.loc[1, (variavel, 'mean')]
     p1_std = clim.loc[1, (variavel, 'std')]
     p2_avg = clim.loc[2, (variavel, 'mean')]
     p2_std = clim.loc[2, (variavel, 'std')]
+
+    plt.figure(figsize=(6.4, 3.6), dpi=300)
 
     plt.plot(meses, p1_avg, label='1960-1989', marker='o', color='blue')
     plt.fill_between(meses, p1_avg - p1_std, p1_avg + p1_std, color='blue', alpha=0.2)
@@ -50,7 +53,7 @@ def graf(clim, variavel, titulo):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig(f'graficos/climensal_{variavel}.png')
+    plt.savefig(f'climensal_{variavel}.png')
 
 variaveis = ['ief', 'dec', 'dvc', 'ddc']
 titulos = ['Índice UV (ao meio dia)', 
