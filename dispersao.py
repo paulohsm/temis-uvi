@@ -38,6 +38,7 @@ def boxes(dados, variavel, titulo):
     plt.title(titulo)
     plt.xlabel('Mês')
     plt.ylabel(variavel)
+    plt.ylim(0, 20)
     plt.tight_layout()
 
     plt.savefig(f'graficos/dispersao_{variavel}.png')

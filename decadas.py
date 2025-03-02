@@ -14,11 +14,13 @@ resultados = df.groupby(['decada', 'mes_na_decada']).agg(['mean', 'std'])
 min_val = df[['ief', 'dvc', 'dec', 'ddc']].min().min()
 max_val = df[['ief', 'dvc', 'dec', 'ddc']].max().max()
 
+plt.figure(figsize=(19.2, 10.8), dpi=320)
 variaveis = ['ief', 'dvc', 'dec', 'ddc']
 for var in variaveis:
     plt.figure(figsize=(21, 9))
     for decada in resultados.index.levels[0]:
         dados_decada = resultados.loc[decada, var]
+        plt.figure(figsize=(19.2, 10.8), dpi=320)
         plt.plot(dados_decada.index, dados_decada['mean'], label=f'{decada}s')
 
         plt.fill_between(
@@ -31,14 +33,14 @@ for var in variaveis:
         plt.xlim(1, 120)
         plt.ylim(min_val-1, max_val+1)
         plt.xticks(np.arange(12, 121, 12))
-        #plt.tight_layout()
+        
         plt.title(f'{var.upper()} - médias e desvios padrão (sobreposição por década)', fontsize=16)
-        plt.xlabel('Meses', fontsize=14)
-        plt.ylabel(var, fontsize=14)
-        plt.legend(fontsize=16)
+        plt.xlabel('Meses')
+        plt.ylabel(var)
+        plt.legend()
         plt.grid()
-        #plt.show()
-        figname = f'graficos/decadas_{var}.png'       
-        plt.savefig(figname, dpi=300, bbox_inches='tight')
+        plt.tight_layout()
+        plt.savefig(f'graficos/decadas_{var}.png')
+        plt.close()
 
 exit()
