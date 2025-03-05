@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 # Carregando dados
 caminho = "/home/santiago/Projetos/temis-uvi/dados/Maracanau.csv"
 uv = pd.read_csv(caminho, skiprows=1, na_values=-999.0, parse_dates=['data'])
@@ -13,8 +14,8 @@ descricoes = ['Índice UV ao meio dia local',
               'Dose diária UV - Vitamina D', 
               'Dose diária UV - Eritemal', 
               'Dose diária UV - Dano ao DNA']
-minimos = [0., 0., 0., 0.]
-maximos = [18., 18., 18., 18.]
+minimos = [0., 7., 3.5, 2.]
+maximos = [18., 17., 8.5, 6.]
 
 # Dicionário com metadados das variáveis
 variaveis = {
@@ -24,10 +25,6 @@ variaveis = {
     'minimo': minimos,
     'maximo': maximos
 }
-
-# Rótulos de meses nos gráficos
-rotulos_meses = ['M', 'J', 'S', 'D'] * 10
-posicoes_meses = np.arange(3, 121, 3)
 
 # Novas colunas para organizar por década e por mês
 uv['decada'] = (uv['data'].dt.year // 10) * 10
@@ -45,8 +42,11 @@ for i, variavel in enumerate(variaveis['sigla']):
         plt.axvline(x=ano, color='gray', linestyle='--', linewidth=0.5)
 
     # Customizações
-    plt.xticks(posicoes_meses, rotulos_meses)
-    plt.title(f'{variaveis['descricao'][i]} (médias e desvios padrão - décadas sobrepostas)')
+    plt.xticks(np.arange(3, 121, 3), ['M', 'J', 'S', 'D'] * 10)
+    plt.title(
+        f"{variaveis['descricao'][i]} "
+        "(médias e desvios padrão - décadas sobrepostas)"
+    )
     plt.xlim(1, 120)
     plt.ylabel(variaveis['unidade'][i])
     plt.ylim(variaveis['minimo'][i], variaveis['maximo'][i])
